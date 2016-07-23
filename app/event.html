@@ -1,0 +1,238 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meet-Up Event Planner</title>
+
+  <!-- Place favicon.ico in the root directory -->
+
+  <!-- build:css styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+
+  <!-- build:js scripts/vendor/modernizr.js -->
+  <script src="/bower_components/modernizr/modernizr.js"></script>
+  <!-- endbuild -->
+</head>
+
+<body>
+  <!--[if lt IE 10]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+  <div class="container">
+    <div class="header">
+      <h3 class="text-muted">Hello, <span id="username"></span></h3>
+    </div>
+
+    <div class="jumbotron">
+      <!-- accordion tab  - Optional Information -->
+      <div id="optInfoContainer">
+        <div id="accOption">
+          <a href="#new" id="optionalInfo" class="collapsed" data-toggle="collapse">Add New Event</a>
+        </div>
+
+        <div id="new" class="collapse">
+          <div class="container" id="myWizard">
+
+            <h3>Add Event Wizard</h3>
+
+            <hr>
+
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4" style="width: 20%;">
+                Step 1 of 4
+              </div>
+            </div>
+
+            <div class="navbar">
+              <div class="navbar-inner">
+                <ul class="nav nav-pills">
+                  <li class="active"><a href="#step1" data-toggle="tab" class="disabled" data-step="1">Step 1</a></li>
+                  <li><a href="#step2" data-toggle="tab" class="disabled" data-step="2">Step 2</a></li>
+                  <li><a href="#step3" data-toggle="tab" class="disabled" data-step="3">Step 3</a></li>
+                  <li><a href="#step4" data-toggle="tab" class="disabled" data-step="4">Step 4</a></li>
+                </ul>
+              </div>
+            </div>
+            <form id="eventForm">
+              <div class="tab-content">
+                <div class="tab-pane fade in active" id="step1">
+
+                  <div class="well">
+
+                    <label for="eventName">Name of the Event:
+                    </label>
+                    <input id="eventName" placeholder="Enter Event Name" class="form-control input-lg" autofocus required/>
+                    <label for="eventType">Type of the Event:</label>
+                    <input id="eventType" placeholder="What is the type of event?" class="form-control input-lg" list="types" required/>
+
+                    <br>
+                    <datalist id="types">
+                      <option value="Birthday Party">
+                        <option value="Conference Talk">
+                          <option value="Wedding">
+                            <option value="Other">
+                    </datalist>
+                    <br>
+                    <span class="errorMsg"></span>
+                    <div class="alert alert-success" role="alert" id="success_message">
+                       <i class="glyphicon glyphicon-thumbs-up"></i>
+                       Your event has been successfully added, Click on Display all events link to see your events
+                        </div>
+
+                       </div>
+
+                  <a class="btn btn-default btn-lg next" href="#">Next</a>
+                </div>
+                <div class="tab-pane fade" id="step2">
+                  <div class="well">
+
+                    <label for="eventHost">Event Host:</label>
+                    <input id="eventHost" placeholder="Who is the event host?" class="form-control  input-lg">
+                    <br>
+                    <label for="eventDate">Event Dates (Start-End): </label>
+                    <input type="text" id="eventDate" name="daterange" value="01/01/2016 - 01/31/2016" />
+                    <br />
+                    <span class="errorMsg"></span>
+
+                  </div>
+                  <a class="btn btn-default prev" href="#">Previous</a>
+                  <a class="btn btn-default next" href="#">Next</a>
+                </div>
+                <div class="tab-pane fade" id="step3">
+                  <div class="well">
+                    <label for="guestName">Guest Name:</label>
+                    <input id="guestName" placeholder="Enter the guest name" class="form-control input-lg">
+                    <a id="addToList" class="btn btn-primary">Add To List</a>
+                    <br>
+                    <ul id="guestList"></ul>
+                    <br />
+                    <br />
+                    <fieldset>
+                      <legend>Address Details</legend>
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="line1">Line 1*</label>
+                        <div class="col-sm-10">
+                          <input type="text" id="line1" placeholder="Address Line 1" class="form-control">
+                        </div>
+                      </div>
+
+                      <!-- Text input-->
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="line2">Line 2</label>
+                        <div class="col-sm-10">
+                          <input type="text" id="line2" placeholder="Address Line 2" class="form-control">
+                        </div>
+                      </div>
+
+                      <!-- Text input-->
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="city">City*</label>
+                        <div class="col-sm-10">
+                          <input type="text" id="city" placeholder="City" class="form-control">
+                        </div>
+                      </div>
+
+                      <!-- Text input-->
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="state">State</label>
+                        <div class="col-sm-4">
+                          <input type="text" id="state" placeholder="State" class="form-control">
+                        </div>
+
+                        <label class="col-sm-2 control-label" for="postalcode">Postcode</label>
+                        <div class="col-sm-4">
+                          <input type="text" id="postalcode" placeholder="Post Code" class="form-control">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="country">Country*</label>
+                        <div class="col-sm-10">
+                          <input type="text" id="country" placeholder="Country" class="form-control">
+                        </div>
+                      </div>
+                      <br />
+                      <span class="errorMsg"></span>
+
+                  </div>
+                  <a class="btn btn-default prev" href="#">Previous</a>
+                  <a class="btn btn-default next" href="#">Next</a>
+                </div>
+                <div class="tab-pane fade" id="step4">
+                  <div class="well">
+                    <label for="msg">Message to the guests:</label>
+                    <textarea id="msg" placeholder="Optional Message" row="20" class="form-control  input-lg"></textarea>
+                    <br>
+                  </div>
+                  <a class="btn btn-default prev" href="#">Previous</a>
+                  <a id="saveEvent" class="btn btn-success first" href="#">Save Event</a>
+                </div>
+
+              </div>
+            </form>
+
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- accordion tab  - Optional Information -->
+      <div id="optInfoContainer">
+        <div id="accOption">
+
+          <a href="#display" id="optionalInfo" class="collapsed display" data-toggle="collapse">Display All Events
+    </a>
+        </div>
+        <div id="display" class="collapse">
+          <div id="eventNames" class="list-group events">
+
+          </div>
+
+        </div>
+      </div>
+      <div class="footer">
+        <p>Meet-Up Event Planner</p>
+      </div>
+      <!-- build:js scripts/vendor.js -->
+      <!-- bower:js -->
+      <script src="/bower_components/jquery/dist/jquery.js"></script>
+      <!-- endbower -->
+      <!-- endbuild -->
+
+      <!-- build:js scripts/plugins.js -->
+      <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
+      <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
+      <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
+      <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
+      <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
+      <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
+      <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
+      <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
+      <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
+      <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
+      <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
+      <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+      <!-- endbuild -->
+
+      <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+      <!-- Include Date Range Picker -->
+      <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+      <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+      <!-- build:js scripts/main.js -->
+      <script src="scripts/main.js"></script>
+      <script src="scripts/bootstrapValidator.js"></script>
+      <!-- endbuild -->
+</body>
+
+</html>
