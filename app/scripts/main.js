@@ -1,5 +1,5 @@
 /* eslint strict: false */
-
+var eventBag = [];
 var guest = [];
 function IssueTracker() {
   this.issues = [];
@@ -183,7 +183,6 @@ $('.next').click(function() {
   var issuesMessage = issues.display();
   if (issuesMessage.length != 0) {
     $('.errorMsg').show();
-    console.log(issuesMessage);
     $('.errorMsg').html(issuesMessage);
     return false;
   }
@@ -260,16 +259,22 @@ $('#saveEvent').click(function() {
     guests.push(guest.pop());
   }
   $('#guestList').empty();
-  console.log(guest);
   document.getElementById('eventForm').reset();
   var event = new Event(name, type, host, startDate, endDate, guests, line1, line2, city, state, postalcode, country, msg);
   var stored = localStorage.getItem('events');
   stored = JSON.parse(stored);
-  stored.push(event);
-  localStorage.setItem('events', JSON.stringify(stored));
-
+  if (stored === null)
+  {
+    eventBag.push(event);
+    localStorage.setItem('events', JSON.stringify(eventBag));
+  }
+  else
+  {
+    eventBag = stored;
+    eventBag.push(event);
+    localStorage.setItem('events', JSON.stringify(eventBag));
+  }
   var results = localStorage.getItem('events');
-  console.log(results);
 });
 
 $('.display').click(function() {
@@ -278,6 +283,10 @@ $('.display').click(function() {
   var start, end, type, host, guests, line1, line2, city, state, postalcode, country, msg;
   var results = localStorage.getItem('events');
   results = JSON.parse(results);
+  if (results === null)
+  {
+    return false;
+  }
   for (var i = 0; i < results.length; i++) {
     name = results[i].name;
     start = results[i].startDate.slice(0, 10);
