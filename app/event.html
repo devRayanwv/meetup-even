@@ -229,6 +229,17 @@
       <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
       <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 
+<script>
+
+$(function() {
+  $('input[name="daterange"]').daterangepicker();
+});
+
+if (!(localStorage.getItem('name') === null)) {
+  document.getElementById('username').innerHTML = localStorage.getItem('name');
+}
+</script>
+
       <!-- build:js scripts/main.js -->
       <script src="scripts/main.js"></script>
       <script src="scripts/bootstrapValidator.js"></script>

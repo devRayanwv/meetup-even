@@ -127,9 +127,7 @@ $(document).ready(function() {
       localStorage.setItem('name', name);
     });
 
-  if (localStorage.getItem('name') != null) {
-    document.getElementById('username').innerHTML = localStorage.getItem('name');
-  }
+
   $('#errorMsg').hide();
 });
 
@@ -221,9 +219,6 @@ $('.first').click(function() {
 
 });
 
-$(function() {
-  $('input[name="daterange"]').daterangepicker();
-});
 
 $('#addToList').click(function() {
   var guestName = $('#guestName').val();
